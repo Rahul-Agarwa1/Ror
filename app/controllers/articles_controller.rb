@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  
   def show
     # byebug
-    @article = Article.find(params[:id])
+    # set_article
   end
 
   def index
@@ -13,12 +15,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    # set_article
   end
 
   def create
     # render plain: params[:article]
-    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_param)
     if @article.save
       flash[:notice] = "Articles is created successfully"
       redirect_to article_path(@article)  #this will extract id 
@@ -30,8 +32,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update(params.require(:article).permit(:title, :description))
+    # set_article
+    if @article.update(article_param)
       flash[:notice] = "Article was updated successfully."
       redirect_to article_path(@article)
     else
@@ -39,5 +41,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    # set_article
+    @article.destroy
+    redirect_to articles_path
+  end
+
+  private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_param
+    params.require(:article).permit(:title, :description)
+  end
   
 end

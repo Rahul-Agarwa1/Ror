@@ -1,5 +1,3 @@
-<h1> New article creation </h1>
-
 <% if @article.errors.any? %>
   <ul>
   <% @article.errors.full_messages.each do |error| %>
@@ -10,7 +8,8 @@
 
 <!-- <h1>Create a new article</h1> -->
 <!-- local: true === that means no remote ajax request -->
-<%= form_with scope: :article, url: articles_path, local: true do |f| %> 
+
+<%= form_with(model: @article, local: true) do |f| %> 
   <p> 
     <%= f.label :title %><br/> 
     <%= f.text_field :title %>
@@ -23,5 +22,3 @@
     <%= f.submit %> 
   </p>
 <% end %>
-
-<p><%= link_to 'Home page', articles_path() %></p>

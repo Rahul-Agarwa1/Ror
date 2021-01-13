@@ -1,3 +1,7 @@
 
 <p><%= @article.description %></p>
 <p><%= @article.title %></p>
+
+<p><%= link_to 'Edit', edit_article_path(@article.id) %></p>
+<p><%= link_to 'Delete', article_path(@article.id),method: :delete , data: {confirm: "Are you sure?"} %></p>
+<p><%= link_to 'Home page', articles_path() %></p>
