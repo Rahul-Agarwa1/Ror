@@ -21,7 +21,8 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article]
     @article = Article.new(article_param)
-    @article.user_id = User.first.id # or  @article.user = User.first
+    # @article.user_id = User.first.id # or  @article.user = User.first
+    @article.user = current_user
     # byebug
     if @article.save
       flash[:notice] = "Articles is created successfully"
