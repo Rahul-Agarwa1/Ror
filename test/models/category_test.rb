@@ -1,4 +1,4 @@
-require './test/test_helper'
+require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
 
